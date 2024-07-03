@@ -7,6 +7,24 @@ Principal objectives: analyze customer profiles and propose recommendations for 
 
 A certain retail chain wants to develop customer segmentation and make a prediction about the possibility of customer churn, which will allow it to develop effective customer retention strategies based on analytical data.
 
+**'INVOICE_NO'** : número de factura 
+
+**'STOCK_CODE'** : número de inventario, esto sería para localizar el item en por ejemplo en el almamcén 
+
+**'DESCRIPTION'** : descripción del producto comprado 
+
+**'QUANTITY'** : cantidad del producto comprado, NO ES EL VALOR MONETARIO TOTAL QUE REPRESENTA ESA FACTURA
+
+**'INVOICE_DATE**': fecha de la factura 
+
+**'UNIT_PRICE'**: precio unitario de cada item
+
+**'CUSTOMER_ID'**: Id del cliente
+
+**'REGION'** : región geográfica 
+
+Principal objectives: analyze customer profiles and propose recommendations for customer retention strategies.
+
 # Table of Contents
 * [Problem Statement](#problem)
 * [Technical Requirements](#technical)
