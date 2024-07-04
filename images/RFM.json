@@ -1,0 +1,20 @@
+[
+    {
+        "High-Value Customer": 1,
+        "recency": 2.725249,
+        "frequency": 162.69395,
+        "monetary_value": 164538.575630
+    },
+    {
+        "Potential Loyal Customer": 2,
+        "recency": 7.819208,
+        "frequency": 118.29790,
+        "monetary_value": 44262.831740
+    },
+    {
+        "Churn Risk Customer": 3,
+        "recency": 51.916650,
+        "frequency": 10.71465,
+        "monetary_value": 3571.906596
+    }
+]
