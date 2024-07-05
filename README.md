@@ -10,21 +10,21 @@ Principal objectives:
 
 A certain retail chain wants to develop customer segmentation and make a prediction about the possibility of customer churn, which will allow it to develop effective customer retention strategies based on analytical data.
 
-**'INVOICE_NO'** : invoice number 
+<code>**'INVOICE_NO'**</code> : invoice number 
 
-**'STOCK_CODE'** : inventory number
+<code>**'STOCK_CODE'**</code> : inventory number
 
-**'DESCRIPTION'** : description of the product purchased 
+<code>**'DESCRIPTION'**</code> : description of the product purchased 
 
-**'QUANTITY'** : quantity of the product purchased
+<code>**'QUANTITY'**</code> : quantity of the product purchased
 
-**'INVOICE_DATE**': invoice date 
+<code>**'INVOICE_DATE'**</code>: invoice date 
 
-**'UNIT_PRICE'**: unit price of each item
+<code>**'UNIT_PRICE'**</code>: unit price of each item
 
-**'CUSTOMER_ID'**: customer ID
+<code>**'CUSTOMER_ID'**</code>: customer ID
 
-**'REGION'** : geographic region 
+<code>**'REGION'**</code> : geographic region 
 
 # Table of Contents
 * [Problem Statement](#problem)
