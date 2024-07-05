@@ -5,6 +5,7 @@ Information provided is storaged in a dataset of 581587 rows and 8 features, con
 Principal objectives: 
 1. Analyze customer profiles for customer segmentation 
 2. Predicting customer churn
+
 =================
 
 A certain retail chain wants to develop customer segmentation and make a prediction about the possibility of customer churn, which will allow it to develop effective customer retention strategies based on analytical data.
