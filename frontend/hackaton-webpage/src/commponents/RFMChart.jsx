@@ -80,7 +80,7 @@ const RFMChart = () => {
         } else if (customer["Churn Risk Customer"] !== undefined) {
           return "Churn Risk Customer";
         }
-        return ""; // handle undefined cases gracefully
+        return "";
       });
       recencyData = data.map((customer) => customer.recency);
       frequencyData = data.map((customer) => customer.frequency);

@@ -7,7 +7,7 @@ import Header from "./commponents/Header";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RFMChartProducts from "./commponents/RFMChartProducts";
-import RFMChartBestCustomers from "./commponents/RFMChart Best Customers copy";
+import RFMChartBestCustomers from "./commponents/RFMChart Best Customers";
 import RFMChartRegions from "./commponents/RFMChart Regions";
 
 function App() {

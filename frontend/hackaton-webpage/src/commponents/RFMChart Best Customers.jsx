@@ -63,15 +63,12 @@ const RFMChartBestCustomers = () => {
     const ctx = chartRef.current.getContext("2d");
     let labels, recencyData, frequencyData, monetaryData;
 
-    // Determinar la estructura del JSON y asignar los datos adecuadamente
     if (data.length && "customerID" in data[0]) {
-      // Estructura tipo customerID, recency, frequency, monetary
       labels = data.map((customer) => `Cliente ${customer.customerID}`);
       recencyData = data.map((customer) => customer.recency);
       frequencyData = data.map((customer) => customer.frequency);
       monetaryData = data.map((customer) => customer.monetary);
     } else if (data.length && "High-Value Customer" in data[0]) {
-      // Estructura tipo High-Value Customer, recency, frequency, monetary_value
       labels = data.map((customer) => {
         if (customer["High-Value Customer"] !== undefined) {
           return "High-Value Customer";
@@ -80,7 +77,7 @@ const RFMChartBestCustomers = () => {
         } else if (customer["Churn Risk Customer"] !== undefined) {
           return "Churn Risk Customer";
         }
-        return ""; // handle undefined cases gracefully
+        return "";
       });
       recencyData = data.map((customer) => customer.recency);
       frequencyData = data.map((customer) => customer.frequency);

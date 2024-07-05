@@ -119,18 +119,18 @@ export default function Header() {
             </PopoverPanel>
           </Popover>
 
-          <Link
+          {/*  <Link
             to="/features"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Features
-          </Link>
-          <Link
+          </Link> */}
+          {/*    <Link
             to="/info"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Info
-          </Link>
+          </Link> */}
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end"></div>
       </nav>
