@@ -20,7 +20,7 @@ ChartJS.register(
   Legend
 );
 
-const RFMChart = () => {
+const RFMChartProducts = () => {
   const chartRef = useRef(null);
   const [chartInstance, setChartInstance] = useState(null);
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -61,30 +61,17 @@ const RFMChart = () => {
 
   const renderChart = (data) => {
     const ctx = chartRef.current.getContext("2d");
-    let labels, recencyData, frequencyData, monetaryData;
+    let labels, salesData;
 
     // Determinar la estructura del JSON y asignar los datos adecuadamente
-    if (data.length && "customerID" in data[0]) {
-      // Estructura tipo customerID, recency, frequency, monetary
-      labels = data.map((customer) => `Cliente ${customer.customerID}`);
-      recencyData = data.map((customer) => customer.recency);
-      frequencyData = data.map((customer) => customer.frequency);
-      monetaryData = data.map((customer) => customer.monetary);
-    } else if (data.length && "High-Value Customer" in data[0]) {
-      // Estructura tipo High-Value Customer, recency, frequency, monetary_value
-      labels = data.map((customer) => {
-        if (customer["High-Value Customer"] !== undefined) {
-          return "High-Value Customer";
-        } else if (customer["Potential Loyal Customer"] !== undefined) {
-          return "Potential Loyal Customer";
-        } else if (customer["Churn Risk Customer"] !== undefined) {
-          return "Churn Risk Customer";
-        }
-        return ""; // handle undefined cases gracefully
-      });
-      recencyData = data.map((customer) => customer.recency);
-      frequencyData = data.map((customer) => customer.frequency);
-      monetaryData = data.map((customer) => customer.monetary_value);
+    if (data.length && "Amount of sales" in data[0]) {
+      // Estructura tipo country, Amount of sales
+      labels = data.map((item) => Object.keys(item)[0]);
+      salesData = data.map((item) => item["Amount of sales"]);
+    } else if (data.length && "Sales in dolars" in data[0]) {
+      // Estructura tipo country, Sales in dolars
+      labels = data.map((item) => Object.keys(item)[0]);
+      salesData = data.map((item) => item["Sales in dolars"]);
     } else {
       console.error("Estructura de datos no reconocida:", data);
       return;
@@ -100,22 +87,8 @@ const RFMChart = () => {
         labels: labels,
         datasets: [
           {
-            label: "Recency",
-            data: recencyData,
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
-            borderColor: "rgba(255, 99, 132, 1)",
-            borderWidth: 1,
-          },
-          {
-            label: "Frequency",
-            data: frequencyData,
-            backgroundColor: "rgba(54, 162, 235, 0.2)",
-            borderColor: "rgba(54, 162, 235, 1)",
-            borderWidth: 1,
-          },
-          {
-            label: "Monetary",
-            data: monetaryData,
+            label: "Sales",
+            data: salesData,
             backgroundColor: "rgba(75, 192, 192, 0.2)",
             borderColor: "rgba(75, 192, 192, 1)",
             borderWidth: 1,
@@ -136,7 +109,7 @@ const RFMChart = () => {
           },
           title: {
             display: true,
-            text: "Chart.js Horizontal Bar Chart",
+            text: "Sales Chart",
           },
         },
         animation: {
@@ -169,7 +142,7 @@ const RFMChart = () => {
   }, [chartInstance]);
 
   return (
-    <div className=" z-11 flex-col items-center flex-wrap flex gap-3 mb-20 shadow-2xl py-6 px-6 bg-[#ececec]">
+    <div className="relative z-11 flex-col items-center flex-wrap flex gap-3 mb-20 shadow-2xl py-6 px-6 bg-[#ececec]">
       {!dataLoaded && (
         <div
           className="text-center text-gray-500 relative"
@@ -195,4 +168,4 @@ const RFMChart = () => {
   );
 };
 
-export default RFMChart;
+export default RFMChartProducts;

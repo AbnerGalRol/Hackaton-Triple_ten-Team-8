@@ -20,7 +20,7 @@ ChartJS.register(
   Legend
 );
 
-const RFMChart = () => {
+const RFMChartBestCustomers = () => {
   const chartRef = useRef(null);
   const [chartInstance, setChartInstance] = useState(null);
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -169,7 +169,7 @@ const RFMChart = () => {
   }, [chartInstance]);
 
   return (
-    <div className=" z-11 flex-col items-center flex-wrap flex gap-3 mb-20 shadow-2xl py-6 px-6 bg-[#ececec]">
+    <div className="relative z-11 flex-col items-center flex-wrap flex gap-3 mb-20 shadow-2xl py-6 px-6 bg-[#ececec]">
       {!dataLoaded && (
         <div
           className="text-center text-gray-500 relative"
@@ -195,4 +195,4 @@ const RFMChart = () => {
   );
 };
 
-export default RFMChart;
+export default RFMChartBestCustomers;

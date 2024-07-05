@@ -20,7 +20,7 @@ ChartJS.register(
   Legend
 );
 
-const RFMChart = () => {
+const RFMChartProducts = () => {
   const chartRef = useRef(null);
   const [chartInstance, setChartInstance] = useState(null);
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -61,34 +61,18 @@ const RFMChart = () => {
 
   const renderChart = (data) => {
     const ctx = chartRef.current.getContext("2d");
-    let labels, recencyData, frequencyData, monetaryData;
 
-    // Determinar la estructura del JSON y asignar los datos adecuadamente
-    if (data.length && "customerID" in data[0]) {
-      // Estructura tipo customerID, recency, frequency, monetary
-      labels = data.map((customer) => `Cliente ${customer.customerID}`);
-      recencyData = data.map((customer) => customer.recency);
-      frequencyData = data.map((customer) => customer.frequency);
-      monetaryData = data.map((customer) => customer.monetary);
-    } else if (data.length && "High-Value Customer" in data[0]) {
-      // Estructura tipo High-Value Customer, recency, frequency, monetary_value
-      labels = data.map((customer) => {
-        if (customer["High-Value Customer"] !== undefined) {
-          return "High-Value Customer";
-        } else if (customer["Potential Loyal Customer"] !== undefined) {
-          return "Potential Loyal Customer";
-        } else if (customer["Churn Risk Customer"] !== undefined) {
-          return "Churn Risk Customer";
-        }
-        return ""; // handle undefined cases gracefully
-      });
-      recencyData = data.map((customer) => customer.recency);
-      frequencyData = data.map((customer) => customer.frequency);
-      monetaryData = data.map((customer) => customer.monetary_value);
-    } else {
-      console.error("Estructura de datos no reconocida:", data);
+    // Verificar que la estructura del JSON sea la esperada
+    if (
+      !Array.isArray(data) ||
+      !data.every((item) => "Amount of sales" in item)
+    ) {
+      console.error("Estructura de datos no reconocida o incorrecta:", data);
       return;
     }
+
+    const labels = data.map((item) => Object.keys(item)[0]);
+    const salesData = data.map((item) => item["Amount of sales"]);
 
     if (chartInstance) {
       chartInstance.destroy();
@@ -100,22 +84,8 @@ const RFMChart = () => {
         labels: labels,
         datasets: [
           {
-            label: "Recency",
-            data: recencyData,
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
-            borderColor: "rgba(255, 99, 132, 1)",
-            borderWidth: 1,
-          },
-          {
-            label: "Frequency",
-            data: frequencyData,
-            backgroundColor: "rgba(54, 162, 235, 0.2)",
-            borderColor: "rgba(54, 162, 235, 1)",
-            borderWidth: 1,
-          },
-          {
-            label: "Monetary",
-            data: monetaryData,
+            label: "Amount of Sales",
+            data: salesData,
             backgroundColor: "rgba(75, 192, 192, 0.2)",
             borderColor: "rgba(75, 192, 192, 1)",
             borderWidth: 1,
@@ -130,13 +100,16 @@ const RFMChart = () => {
           },
         },
         responsive: true,
+
+        aspectRatio: 2,
+
         plugins: {
           legend: {
             position: "right",
           },
           title: {
             display: true,
-            text: "Chart.js Horizontal Bar Chart",
+            text: "Sales Data Chart",
           },
         },
         animation: {
@@ -144,7 +117,19 @@ const RFMChart = () => {
           easing: "easeOutBounce",
         },
         layout: {
-          backgroundColor: "#ececec",
+          padding: {
+            right: 100,
+            left: 50,
+          },
+        },
+        scales: {
+          y: {
+            ticks: {
+              autoSkip: false,
+              maxRotation: 0,
+              minRotation: 0,
+            },
+          },
         },
       },
     });
@@ -169,7 +154,7 @@ const RFMChart = () => {
   }, [chartInstance]);
 
   return (
-    <div className=" z-11 flex-col items-center flex-wrap flex gap-3 mb-20 shadow-2xl py-6 px-6 bg-[#ececec]">
+    <div className="relative z-11 flex-col items-center flex-wrap flex gap-3 mb-20 shadow-2xl py-6 px-6 bg-[#ececec]">
       {!dataLoaded && (
         <div
           className="text-center text-gray-500 relative"
@@ -178,11 +163,13 @@ const RFMChart = () => {
           Please load or upload data
         </div>
       )}
+
       <canvas
         ref={chartRef}
         id="rfmChart"
         className="w-full h-96 rfm-chart animate-flip-up"
       ></canvas>
+
       <button id="loadDataButton" className="relative z-11 text-[#57626d]">
         Load Data
       </button>
@@ -195,4 +182,4 @@ const RFMChart = () => {
   );
 };
 
-export default RFMChart;
+export default RFMChartProducts;
